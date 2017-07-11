@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sample Angular App</title>
+		<link rel="stylesheet" type="text/css" href="../app.css">
+		<script type="text/javascript" src="../angular.min.js"></script>
+	</head>
+	
+	<body data-ng-app="myApp" data-ng-controller="reportGenerator">
+		<section class="content">
+			<div class="variables-container">
+				<div class="set-wrapper">
+					<label class="variable-hint">Principle amount : </label>
+					<br />
+					<input class="variable-value" type="number" min="1" data-ng-model="principleAmt">
+				</div>
+				
+				<div class="set-wrapper">
+					<label class="variable-hint">Interest rate (%) : </label>
+					<br />
+					<input class="variable-value" type="number" min="1" data-ng-model="interestRate">
+				</div>
+				
+				<div class="set-wrapper">
+					<label class="variable-hint">Time period (Years) : </label>
+					<br />
+					<input class="variable-value" type="number" min="1" data-ng-model="timePeriod">
+				</div>
+				
+				<div class="set-wrapper">
+					<label class="variable-hint">Payout interval : </label>
+					<br />
+					<input class="variable-value" type="text" value="3 months" readonly="readonly">
+				</div>
+				
+				<div class="set-wrapper compute-btn-container">
+					<button class="compute-btn" type="button" data-ng-click="generateReport()">Compute</button>
+				</div>
+			</div>
+			
+			<div class="report-container" data-ng-show="reportReady">
+				<div class="set-wrapper">
+					<label>Time : </label>
+					<br />
+					<select class="variable-value" data-ng-model="selectedYear" data-ng-options="y.name for y in yearOptions" data-ng-change="updateReport()"></select>
+				</div>
+
+				<div class="set-wrapper">
+					<label>Quarter : </label>
+					<br />
+					<select class="variable-value" data-ng-model="selectedQuarter" data-ng-options="q.name for q in quarterOptions" data-ng-change="updateReport()"></select>
+				</div>
+				
+				<div class="set-wrapper">
+					<label class="variable-hint">Starting amount : </label>
+					<br />
+					<input class="variable-value" data-ng-model="reportStartAmount" readonly="readonly">
+				</div>
+				
+				<div class="set-wrapper">
+					<label class="variable-hint">Interest amount : </label>
+					<br />
+					<input class="variable-value" data-ng-model="reportInterestAmount" readonly="readonly">
+				</div>
+				
+				<div class="set-wrapper">
+					<label class="variable-hint">Final amount : </label>
+					<br />
+					<input class="variable-value" data-ng-model="reportFinalAmount" readonly="readonly">
+				</div>
+			</div>
+			
+			<div class="summary-container" data-ng-show="summaryReady">
+				<div class="set-wrapper">
+					<label class="variable-hint">Initial amount : </label>
+					<br />
+					<input class="variable-value" data-ng-model="summaryInitialAmount" readonly="readonly">
+				</div>
+				
+				<div class="set-wrapper">
+					<label class="variable-hint">Total interest : </label>
+					<br />
+					<input class="variable-value" data-ng-model="summaryInterestAmount" readonly="readonly">
+				</div>
+				
+				<div class="set-wrapper">
+					<label class="variable-hint">Final amount : </label>
+					<br />
+					<input class="variable-value" data-ng-model="summaryFinalAmount" readonly="readonly">
+				</div>
+			</div>
+		</section>
+		
+		<script type="text/javascript" src="../app.js"></script>
+	</body>
+</html>
